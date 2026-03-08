@@ -1,6 +1,6 @@
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Heart, Award, Users } from "lucide-react";
-import imgConfeiteira from "figma:asset/18d819d8d62be6b8398c3e493a303f975b9f7e3b.png";
+import imgConfeiteira from "@/assets/18d819d8d62be6b8398c3e493a303f975b9f7e3b.png";
 
 export function About() {
   return (
@@ -15,7 +15,7 @@ export function About() {
                 alt="Maria Barros - Confeiteira"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
+              <div className="absolute inset-0 bg-linear-to-t from-primary/20 to-transparent"></div>
             </div>
           </div>
 
