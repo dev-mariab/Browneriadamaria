@@ -1,5 +1,5 @@
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import imgHeroChocolate from "src/assets/977d8ce9c8848a8281951f09fde3a5e15fe73dba.png";
+import imgHeroChocolate from "@/assets/977d8ce9c8848a8281951f09fde3a5e15fe73dba.png";
 
 export function Hero() {
   const handleWhatsAppClick = () => {
