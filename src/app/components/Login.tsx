@@ -90,15 +90,6 @@ export function Login() {
             </button>
           </form>
 
-          {/* Credenciais de demonstração */}
-          <div className="mt-6 pt-6 border-t border-gray-200">
-            <p className="text-xs text-gray-500 text-center mb-2">Credenciais padrão:</p>
-            <div className="bg-gray-50 rounded-lg p-3 text-xs font-mono text-gray-700 space-y-1">
-              <div><span className="text-gray-500">Usuário:</span> admin</div>
-              <div><span className="text-gray-500">Senha:</span> browneria2003</div>
-            </div>
-          </div>
-
           <div className="mt-6 text-center">
             <a href="/" className="text-sm text-[#8B4513] hover:underline">
               ← Voltar para o site
