@@ -1,4 +1,5 @@
-import imgHeroChocolate from "@/assets/977d8ce9c8848a8281951f09fde3a5e15fe73dba.png";
+import { ImageWithFallback } from "./figma/ImageWithFallback";
+import imgHeroChocolate from "figma:asset/977d8ce9c8848a8281951f09fde3a5e15fe73dba.png";
 
 export function Hero() {
   const handleWhatsAppClick = () => {
@@ -14,7 +15,7 @@ export function Hero() {
           alt="Chocolate artesanal derretido"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-linear-to-r from-black/60 via-black/40 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent"></div>
       </div>
 
       {/* Content */}

@@ -1,72 +1,8 @@
-import { ImageWithFallback } from "./figma/ImageWithFallback";
-import imgBrownieTradicional from "@/assets/97fc1f3f34de047560cc47bbb7ee00740cf7dd58.png";
-import imgBrownieRecheado from "@/assets/8c974d68960917ab7897863a3c81664c1e355ebb.png";
-import imgMiniOvos from "@/assets/a12121596bda846ad84ea69030d31c9e86daa964.png";
-import imgTrufas from "@/assets/eb16197c67678a230d9f24affc48f69f1c3cb47e.png";
-import imgBolosCaseirinhos from "@/assets/0daa0b45fd468a8c48fbd341600ea01184af5bde.png";
-import imgNakedBrownie from "@/assets/d4a6d4e98cb83184272005bfb2295742d725f2d4.png";
-
-interface Product {
-  id: number;
-  name: string;
-  category: string;
-  description: string;
-  price: string;
-  image: string;
-}
-
-const products: Product[] = [
-  {
-    id: 1,
-    name: "Brownie Tradicional",
-    category: "Brownies",
-    description: "Brownie clássico de chocolate, crocante por fora e macio por dentro",
-    price: "Consulte preços",
-    image: imgBrownieTradicional,
-  },
-  {
-    id: 2,
-    name: "Brownie Recheado",
-    category: "Brownies",
-    description: "Brownie irresistível com recheio cremoso de chocolate",
-    price: "Consulte preços",
-    image: imgBrownieRecheado,
-  },
-  {
-    id: 3,
-    name: "Naked Brownie",
-    category: "Brownies",
-    description: "Brownie em camadas com recheio de brigadeiro branco e morangos frescos",
-    price: "Consulte preços",
-    image: imgNakedBrownie,
-  },
-  {
-    id: 4,
-    name: "Trufas de 30g",
-    category: "Trufas",
-    description: "Trufas artesanais de chocolate em diversos sabores",
-    price: "Consulte preços",
-    image: imgTrufas,
-  },
-  {
-    id: 5,
-    name: "Mini Ovos de Colher 50g",
-    category: "Ovos de Colher",
-    description: "Mini ovos de chocolate recheados, perfeitos para presentear",
-    price: "Consulte preços",
-    image: imgMiniOvos,
-  },
-  {
-    id: 6,
-    name: "Bolos Caseirinhos",
-    category: "Bolos",
-    description: "Bolinhos individuais cobertos com chocolate, macios e deliciosos",
-    price: "Consulte preços",
-    image: imgBolosCaseirinhos,
-  },
-];
+import { useProducts } from "../contexts/ProductsContext";
 
 export function ProductGallery() {
+  const { products } = useProducts();
+
   return (
     <section id="produtos" className="py-16 md:py-24 bg-muted">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">

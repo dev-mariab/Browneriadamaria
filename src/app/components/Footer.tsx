@@ -55,19 +55,19 @@ export function Footer() {
             </h4>
             <ul className="space-y-3 font-['Inter'] text-sm md:text-base">
               <li className="flex items-start gap-2">
-                <Phone className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <Phone className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                 <a href="tel:+5588994136820" className="text-white/80 hover:text-primary transition-colors">
                   (88) 99413-6820
                 </a>
               </li>
               <li className="flex items-start gap-2">
-                <Mail className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <Mail className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                 <a href="mailto:pinhom913@gmail.com" className="text-white/80 hover:text-primary transition-colors">
                   pinhom913@gmail.com
                 </a>
               </li>
               <li className="flex items-start gap-2">
-                <MapPin className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <MapPin className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                 <span className="text-white/80">Quixadá, CE</span>
               </li>
             </ul>
@@ -103,9 +103,17 @@ export function Footer() {
             <p className="font-['Inter'] text-sm text-white/60 text-center md:text-left">
               © 2026 Browneria da Maria. Todos os direitos reservados.
             </p>
-            <p className="font-['Inter'] text-sm text-white/60 text-center md:text-right">
-              Feito com amor em Quixadá, CE
-            </p>
+            <div className="flex items-center gap-4">
+              <a 
+                href="/login" 
+                className="font-['Inter'] text-xs text-white/30 hover:text-white/60 transition-colors"
+              >
+                Admin
+              </a>
+              <p className="font-['Inter'] text-sm text-white/60 text-center md:text-right">
+                Feito com amor em Quixadá, CE
+              </p>
+            </div>
           </div>
         </div>
       </div>
