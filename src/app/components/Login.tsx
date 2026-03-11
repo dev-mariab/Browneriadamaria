@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { useAuth } from '../contexts/AuthContext';
 import { Lock, User } from 'lucide-react';
 
@@ -91,9 +91,12 @@ export function Login() {
           </form>
 
           <div className="mt-6 text-center">
-            <a href="/" className="text-sm text-[#8B4513] hover:underline">
+            <button 
+              onClick={() => navigate('/')} 
+              className="text-sm text-[#8B4513] hover:underline"
+            >
               ← Voltar para o site
-            </a>
+            </button>
           </div>
         </div>
       </div>

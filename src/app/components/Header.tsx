@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X, Instagram } from "lucide-react";
+import { Menu, X, Instagram, Lock } from "lucide-react";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -51,6 +51,13 @@ export function Header() {
             >
               <Instagram className="w-5 h-5" />
             </a>
+            <a
+              href="/login"
+              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#D4A5A5] to-[#8B4513] text-white rounded-full hover:shadow-lg transition-all font-['Inter'] text-sm font-medium"
+            >
+              <Lock className="w-4 h-4" />
+              Admin
+            </a>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -93,6 +100,13 @@ export function Header() {
               >
                 <Instagram className="w-5 h-5" />
                 Instagram
+              </a>
+              <a
+                href="/login"
+                className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#D4A5A5] to-[#8B4513] text-white rounded-full hover:shadow-lg transition-all font-['Inter'] text-sm font-medium justify-center"
+              >
+                <Lock className="w-4 h-4" />
+                Painel Admin
               </a>
             </div>
           </nav>

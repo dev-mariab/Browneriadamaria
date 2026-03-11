@@ -103,17 +103,9 @@ export function Footer() {
             <p className="font-['Inter'] text-sm text-white/60 text-center md:text-left">
               © 2026 Browneria da Maria. Todos os direitos reservados.
             </p>
-            <div className="flex items-center gap-4">
-              <a 
-                href="/login" 
-                className="font-['Inter'] text-xs text-white/30 hover:text-white/60 transition-colors"
-              >
-                Admin
-              </a>
-              <p className="font-['Inter'] text-sm text-white/60 text-center md:text-right">
-                Feito com amor em Quixadá, CE
-              </p>
-            </div>
+            <p className="font-['Inter'] text-sm text-white/60 text-center md:text-right">
+              Feito com amor em Quixadá, CE
+            </p>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router';
 import { LandingPage } from './components/LandingPage';
 import { Login } from './components/Login';
 import { AdminPanel } from './components/AdminPanel';
