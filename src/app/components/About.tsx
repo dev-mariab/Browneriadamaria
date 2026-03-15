@@ -1,6 +1,5 @@
-import { Heart, Award, Users } from "lucide-react";
-
-const imgConfeiteira = '/images/about-placeholder.svg';
+import { Heart, Award } from "lucide-react";
+import imgConfeiteira from "figma:asset/18d819d8d62be6b8398c3e493a303f975b9f7e3b.png";
 
 export function About() {
   return (
