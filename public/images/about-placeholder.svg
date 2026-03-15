@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1200" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1200" role="img"
+  aria-labelledby="title desc">
   <title id="title">Confeiteira Browneria</title>
   <desc id="desc">Imagem de placeholder para a seção sobre.</desc>
   <defs>
@@ -12,7 +13,8 @@
     <circle cx="500" cy="420" r="190" />
     <rect x="270" y="650" width="460" height="330" rx="140" />
   </g>
-  <text x="500" y="1100" text-anchor="middle" fill="#FFF7EF" font-family="Arial, sans-serif" font-size="44" font-weight="700">
+  <text x="500" y="1100" text-anchor="middle" fill="#FFF7EF" font-family="Arial, sans-serif"
+    font-size="44" font-weight="700">
     Browneria da Maria
   </text>
 </svg>

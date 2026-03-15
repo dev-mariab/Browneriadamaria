@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img"
+  aria-labelledby="title desc">
   <title id="title">Banner Browneria</title>
   <desc id="desc">Imagem de placeholder para a seção principal do site.</desc>
   <defs>
