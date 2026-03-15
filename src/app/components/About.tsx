@@ -1,6 +1,6 @@
 import { Heart, Award, Users } from "lucide-react";
 
-const imgConfeiteira = '/images/about-placeholder.svg';
+const imgConfeiteira = '/images/confeiteira.png';
 
 export function About() {
   return (

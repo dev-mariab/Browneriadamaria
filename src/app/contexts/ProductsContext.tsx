@@ -1,12 +1,12 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { projectId, publicAnonKey } from '../../../utils/supabase/info';
 
-const imgBrownieTradicional = '/images/product-placeholder.svg';
-const imgBrownieRecheado = '/images/product-placeholder.svg';
-const imgMiniOvos = '/images/product-placeholder.svg';
-const imgTrufas = '/images/product-placeholder.svg';
-const imgBolosCaseirinhos = '/images/product-placeholder.svg';
-const imgNakedBrownie = '/images/product-placeholder.svg';
+const imgBrownieTradicional = '/images/brownie-tradicional.png';
+const imgBrownieRecheado = '/images/brownie-recheado.png';
+const imgMiniOvos = '/images/mini-ovos.png';
+const imgTrufas = '/images/trufas.png';
+const imgBolosCaseirinhos = '/images/bolos-caseirinhos.png';
+const imgNakedBrownie = '/images/naked-brownie.png';
 
 export interface Product {
   id: string;

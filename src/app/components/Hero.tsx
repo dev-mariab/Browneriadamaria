@@ -1,4 +1,4 @@
-const imgHeroChocolate = '/images/hero-placeholder.svg';
+const imgHeroChocolate = '/images/hero-chocolate.png';
 
 export function Hero() {
   const handleWhatsAppClick = () => {
