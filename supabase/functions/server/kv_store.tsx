@@ -10,11 +10,26 @@ CREATE TABLE kv_store_d2e7a431 (
 // View at https://supabase.com/dashboard/project/qntauqqdmbcnzejvbeed/database/tables
 
 // This file provides a simple key-value interface for storing Figma Make data. It should be adequate for most small-scale use cases.
+declare const Deno: {
+  env: {
+    get: (name: string) => string | undefined;
+  };
+};
+
+// @ts-ignore Resolved by Supabase Edge Runtime (Deno JSR import)
 import { createClient } from "jsr:@supabase/supabase-js@2.49.8";
 
+const getEnv = (name: string): string => {
+  const value = Deno.env.get(name);
+  if (!value) {
+    throw new Error(`Missing required env var: ${name}`);
+  }
+  return value;
+};
+
 const client = () => createClient(
-  Deno.env.get("SUPABASE_URL"),
-  Deno.env.get("SUPABASE_SERVICE_ROLE_KEY"),
+  getEnv("SUPABASE_URL"),
+  getEnv("SUPABASE_SERVICE_ROLE_KEY"),
 );
 
 // Set stores a key-value pair in the database.
@@ -64,7 +79,7 @@ export const mget = async (keys: string[]): Promise<any[]> => {
   if (error) {
     throw new Error(error.message);
   }
-  return data?.map((d) => d.value) ?? [];
+  return (data ?? []).map((item: { value: any }) => item.value);
 };
 
 // Deletes multiple key-value pairs from the database.
