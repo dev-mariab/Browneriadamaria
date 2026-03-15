@@ -27,7 +27,11 @@ app.get("/make-server-d2e7a431/health", (c) => {
 // Get all products
 app.get("/make-server-d2e7a431/products", async (c) => {
   try {
-    const products = await kv.getByPrefix("product:");
+    const productsWithKeys = await kv.getByPrefix("product:");
+    const products = productsWithKeys.map(({ key, value }) => ({
+      ...value,
+      id: key,
+    }));
     console.log("GET /products - Retrieved products:", products?.length || 0);
     return c.json({ products: products || [] });
   } catch (error) {
@@ -41,9 +45,13 @@ app.post("/make-server-d2e7a431/products", async (c) => {
   try {
     const product = await c.req.json();
     const productId = `product:${Date.now()}`;
-    await kv.set(productId, product);
+    const productWithId = {
+      ...product,
+      id: productId,
+    };
+    await kv.set(productId, productWithId);
     console.log("POST /products - Created product:", productId);
-    return c.json({ success: true, id: productId, product });
+    return c.json({ success: true, id: productId, product: productWithId });
   } catch (error) {
     console.error("Error creating product:", error);
     return c.json({ error: "Failed to create product", details: String(error) }, 500);
@@ -53,11 +61,18 @@ app.post("/make-server-d2e7a431/products", async (c) => {
 // Update product
 app.put("/make-server-d2e7a431/products/:id", async (c) => {
   try {
-    const id = c.req.param("id");
+    const id = decodeURIComponent(c.req.param("id"));
+    if (!id || !id.startsWith("product:")) {
+      return c.json({ error: "Invalid product id" }, 400);
+    }
     const product = await c.req.json();
-    await kv.set(id, product);
+    const productWithId = {
+      ...product,
+      id,
+    };
+    await kv.set(id, productWithId);
     console.log("PUT /products - Updated product:", id);
-    return c.json({ success: true, id, product });
+    return c.json({ success: true, id, product: productWithId });
   } catch (error) {
     console.error("Error updating product:", error);
     return c.json({ error: "Failed to update product", details: String(error) }, 500);
@@ -67,7 +82,10 @@ app.put("/make-server-d2e7a431/products/:id", async (c) => {
 // Delete product
 app.delete("/make-server-d2e7a431/products/:id", async (c) => {
   try {
-    const id = c.req.param("id");
+    const id = decodeURIComponent(c.req.param("id"));
+    if (!id || !id.startsWith("product:")) {
+      return c.json({ error: "Invalid product id" }, 400);
+    }
     await kv.del(id);
     console.log("DELETE /products - Deleted product:", id);
     return c.json({ success: true, id });

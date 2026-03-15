@@ -1,12 +1,12 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { projectId, publicAnonKey } from '../../../utils/supabase/info';
 
-const imgBrownieTradicional = '/images/brownie-tradicional.png';
-const imgBrownieRecheado = '/images/brownie-recheado.png';
-const imgMiniOvos = '/images/mini-ovos.png';
-const imgTrufas = '/images/trufas.png';
-const imgBolosCaseirinhos = '/images/bolos-caseirinhos.png';
-const imgNakedBrownie = '/images/naked-brownie.png';
+const imgBrownieTradicional = '/images/product-placeholder.svg';
+const imgBrownieRecheado = '/images/product-placeholder.svg';
+const imgMiniOvos = '/images/product-placeholder.svg';
+const imgTrufas = '/images/product-placeholder.svg';
+const imgBolosCaseirinhos = '/images/product-placeholder.svg';
+const imgNakedBrownie = '/images/product-placeholder.svg';
 
 export interface Product {
   id: string;
@@ -26,6 +26,7 @@ interface ProductsContextType {
 }
 
 const ProductsContext = createContext<ProductsContextType | undefined>(undefined);
+const PRODUCTS_CACHE_KEY = 'browneria_products_cache';
 
 const API_URL = `https://${projectId}.supabase.co/functions/v1/make-server-d2e7a431`;
 
@@ -84,8 +85,41 @@ export function ProductsProvider({ children }: { children: ReactNode }) {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const normalizeProducts = (rawProducts: any[]): Product[] => {
+    const unique = new Map<string, Product>();
+
+    rawProducts.forEach((item, index) => {
+      const id = typeof item?.id === 'string' && item.id.trim() !== ''
+        ? item.id
+        : `temp:${Date.now()}-${index}`;
+
+      unique.set(id, {
+        id,
+        name: String(item?.name ?? ''),
+        category: String(item?.category ?? ''),
+        description: String(item?.description ?? ''),
+        price: String(item?.price ?? ''),
+        image: String(item?.image ?? ''),
+      });
+    });
+
+    return Array.from(unique.values());
+  };
+
   // Fetch products from database
   useEffect(() => {
+    const cachedProducts = localStorage.getItem(PRODUCTS_CACHE_KEY);
+    if (cachedProducts) {
+      try {
+        const parsed = JSON.parse(cachedProducts) as Product[];
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setProducts(normalizeProducts(parsed));
+        }
+      } catch (error) {
+        console.error('Error reading products cache:', error);
+      }
+    }
+
     const fetchProducts = async () => {
       try {
         console.log('Fetching products from database...');
@@ -102,27 +136,10 @@ export function ProductsProvider({ children }: { children: ReactNode }) {
         const data = await response.json();
         console.log('Products fetched:', data.products?.length || 0);
 
-        if (data.products && data.products.length > 0) {
-          setProducts(data.products);
-        } else {
-          // Initialize with default products if database is empty
-          console.log('Database empty, initializing with default products');
-          for (const product of defaultProducts) {
-            await fetch(`${API_URL}/products`, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${publicAnonKey}`,
-              },
-              body: JSON.stringify(product),
-            });
-          }
-          setProducts(defaultProducts);
-        }
+        const normalized = normalizeProducts(Array.isArray(data.products) ? data.products : []);
+        setProducts(normalized);
       } catch (error) {
         console.error('Error fetching products:', error);
-        // Fallback to default products on error
-        setProducts(defaultProducts);
       } finally {
         setLoading(false);
       }
@@ -130,6 +147,13 @@ export function ProductsProvider({ children }: { children: ReactNode }) {
 
     fetchProducts();
   }, []);
+
+  useEffect(() => {
+    if (products.length === 0) {
+      return;
+    }
+    localStorage.setItem(PRODUCTS_CACHE_KEY, JSON.stringify(products));
+  }, [products]);
 
   const addProduct = async (productData: Omit<Product, 'id'>) => {
     try {
@@ -149,12 +173,13 @@ export function ProductsProvider({ children }: { children: ReactNode }) {
 
       const data = await response.json();
       console.log('Product added:', data);
-      
+
       const newProduct: Product = {
         ...productData,
-        id: data.id,
+        ...data.product,
+        id: data.id || data.product?.id,
       };
-      setProducts(prev => [...prev, newProduct]);
+      setProducts(prev => normalizeProducts([...prev, newProduct]));
     } catch (error) {
       console.error('Error adding product:', error);
       throw error;
@@ -180,9 +205,16 @@ export function ProductsProvider({ children }: { children: ReactNode }) {
       const data = await response.json();
       console.log('Product updated:', data);
 
-      setProducts(prev =>
-        prev.map(p => (p.id === id ? { ...productData, id } : p))
-      );
+      const updatedProduct: Product = {
+        ...productData,
+        ...data.product,
+        id,
+      };
+
+      setProducts(prev => normalizeProducts([
+        ...prev.filter((p) => p.id !== id),
+        updatedProduct,
+      ]));
     } catch (error) {
       console.error('Error updating product:', error);
       throw error;
