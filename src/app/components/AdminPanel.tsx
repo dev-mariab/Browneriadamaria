@@ -29,18 +29,26 @@ export function AdminPanel() {
 
   const handleDeleteProduct = (id: string, name: string) => {
     if (confirm(`Tem certeza que deseja remover "${name}" do cardápio?`)) {
-      deleteProduct(id);
+      deleteProduct(id).catch(error => {
+        console.error('Error deleting product:', error);
+        alert('Erro ao deletar produto. Tente novamente.');
+      });
     }
   };
 
-  const handleSaveProduct = (productData: Omit<Product, 'id'>) => {
-    if (editingProduct) {
-      updateProduct(editingProduct.id, productData);
-    } else {
-      addProduct(productData);
+  const handleSaveProduct = async (productData: Omit<Product, 'id'>) => {
+    try {
+      if (editingProduct) {
+        await updateProduct(editingProduct.id, productData);
+      } else {
+        await addProduct(productData);
+      }
+      setShowForm(false);
+      setEditingProduct(undefined);
+    } catch (error) {
+      console.error('Error saving product:', error);
+      alert('Erro ao salvar produto. Tente novamente.');
     }
-    setShowForm(false);
-    setEditingProduct(undefined);
   };
 
   const stats = [
