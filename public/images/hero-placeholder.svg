@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Banner Browneria</title>
+  <desc id="desc">Imagem de placeholder para a seção principal do site.</desc>
+  <defs>
+    <linearGradient id="hero" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1D120D" />
+      <stop offset="100%" stop-color="#7A4A34" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#hero)" />
+  <g fill="#E9D2BF" opacity="0.35">
+    <circle cx="240" cy="180" r="180" />
+    <circle cx="560" cy="220" r="140" />
+    <circle cx="980" cy="300" r="220" />
+    <circle cx="1340" cy="220" r="150" />
+  </g>
+</svg>
