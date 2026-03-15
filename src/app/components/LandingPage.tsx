@@ -4,6 +4,7 @@ import { ProductGallery } from "./ProductGallery";
 import { About } from "./About";
 import { Footer } from "./Footer";
 import { WhatsAppButton } from "./WhatsAppButton";
+import { DebugPanel } from "./DebugPanel";
 
 export function LandingPage() {
   return (
@@ -16,6 +17,7 @@ export function LandingPage() {
       </main>
       <Footer />
       <WhatsAppButton />
+      <DebugPanel />
     </div>
   );
 }
