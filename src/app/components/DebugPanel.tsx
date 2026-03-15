@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { projectId, publicAnonKey } from '/utils/supabase/info';
+import { projectId, publicAnonKey } from '../../../utils/supabase/info';
 import { AlertCircle, Trash2 } from 'lucide-react';
 
 const API_URL = `https://${projectId}.supabase.co/functions/v1/make-server-d2e7a431`;

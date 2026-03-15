@@ -1,11 +1,12 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { projectId, publicAnonKey } from '/utils/supabase/info';
-import imgBrownieTradicional from "figma:asset/97fc1f3f34de047560cc47bbb7ee00740cf7dd58.png";
-import imgBrownieRecheado from "figma:asset/8c974d68960917ab7897863a3c81664c1e355ebb.png";
-import imgMiniOvos from "figma:asset/a12121596bda846ad84ea69030d31c9e86daa964.png";
-import imgTrufas from "figma:asset/eb16197c67678a230d9f24affc48f69f1c3cb47e.png";
-import imgBolosCaseirinhos from "figma:asset/0daa0b45fd468a8c48fbd341600ea01184af5bde.png";
-import imgNakedBrownie from "figma:asset/d4a6d4e98cb83184272005bfb2295742d725f2d4.png";
+import { projectId, publicAnonKey } from '../../../utils/supabase/info';
+
+const imgBrownieTradicional = '/images/product-placeholder.svg';
+const imgBrownieRecheado = '/images/product-placeholder.svg';
+const imgMiniOvos = '/images/product-placeholder.svg';
+const imgTrufas = '/images/product-placeholder.svg';
+const imgBolosCaseirinhos = '/images/product-placeholder.svg';
+const imgNakedBrownie = '/images/product-placeholder.svg';
 
 export interface Product {
   id: string;
